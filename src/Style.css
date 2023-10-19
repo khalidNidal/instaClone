@@ -1,0 +1,422 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+/* :root{
+  --prcolor:#FFFFFF
+  --scolor:#1D1D1D
+} */
+
+.App {
+  text-align: center;
+}
+.sidecont {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+
+  width: 335px;
+}
+.return {
+  display: flex;
+}
+.homepage {
+  display: grid;
+  grid-template-columns: 268px 1fr ;
+}
+.ilogo {
+  width: 105px;
+  height: 30px;
+  margin-top: 35px;
+  margin-left: 20px;
+  padding: 0;
+  
+}
+.logo {
+  height: 92px;
+}
+.icons {
+  display: flex;
+  align-items: center;
+  padding-right: 100px;
+  height: 36px;
+  padding: 5px;
+  cursor: pointer;
+}
+.Icon{
+  margin-right: 7px;
+}
+
+.Navcont {
+  position: fixed;
+  height: 100vh;
+  padding-right: 80px;
+  
+  border-right: 2px solid #1D1D1D;
+}
+.navs {
+  display: grid;
+  gap: 15px;
+  width: 100%;
+  margin-left: 15px;
+
+}
+.profile-pic{
+  width: 30px;
+  border-radius: 50%;
+}
+.menu-item{
+  position: absolute;
+  bottom: 30px;
+  width: 90%;
+}
+.navitem:hover{
+  background-color: #1D1D1D;
+  border-radius: 10px;
+}
+.homedivs{
+  display: flex;
+  
+}
+.content{
+  width: 60%;
+  margin: auto;
+}
+.newfollower{
+  width: 537px;
+  height: 100%;
+}
+
+
+.story-header{
+  margin-top: 90px;
+  display: flex;
+  
+  justify-content: start;
+  width: 450px;
+  
+}
+
+
+.storycomp img{
+  position: absolute;
+
+}
+.border{
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(230deg, #D300C5 11.19%, #FF234B 50.32%, #FFC900 125.69%);;
+  padding: 3px;
+}
+
+
+.border img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: black;
+  
+
+}
+
+.stories{
+  margin-top: 40px;
+  display: flex;
+   
+  border-bottom: 2px solid #292929;
+}
+.story{
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+.container{
+  width: fit-content;
+  margin: auto;
+}
+.postHeader{
+
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  
+
+}
+.containPosts{
+  margin-top: 25px;
+}
+.more{
+  /* margin-left: auto; */
+  margin-top: 15px;
+}
+
+.postBorder{
+
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: linear-gradient(230deg, #D300C5 11.19%, #FF234B 50.32%, #FFC900 125.69%);;
+  padding: 3px;
+  margin-top: 10px;
+}
+
+.storyBorder{
+
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: linear-gradient(230deg, #D300C5 11.19%, #FF234B 50.32%, #FFC900 125.69%);;
+  padding: 3px;
+}
+
+.postName{
+  display: flex;
+ 
+}
+
+
+.postBorder img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: black;
+
+}
+
+.storyBorder img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: black;
+
+}
+
+.postHeaderInfo{
+  margin-left: 10px;
+  display: flex;
+ justify-content: center;
+}
+.postHeaderInfo p{
+margin-top: 15px;
+}
+.timeOut{
+  width: 4.864px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: gray;
+  margin-left: 6px;
+  margin-right: 2px;
+  margin-top: 27px;
+}
+.timeOut p{
+  display: inline;
+  margin-left:7px;
+  position: relative;
+  top: -7px;
+  color:gray;
+}
+
+.likeswitch{
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+
+.ptext{
+  
+}
+
+.underPostIcons{
+  width: 550px;
+  display: flex;
+  justify-content: space-between;
+}
+.accountSide{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  
+}
+.accountName{
+  color: gray;
+}
+.newfollower{
+  margin-top: 50px;
+}
+.switch{
+  margin-left: auto;
+}
+
+/* .asd{
+  display: flex;
+} */
+.Bnewfollower{
+  width: 70%;
+  margin: auto;
+}
+.knownPeople{
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.knownPeople p:nth-child(1){
+  color: gray;
+}
+
+
+.Suggestions{
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.follow{
+
+  margin-left: auto;
+
+}
+
+.explorePics{
+  margin: 10px;
+}
+
+Link{
+  text-decoration: none;
+  color: black;
+}
+.messagesPage{
+  display: grid;
+  grid-template-columns: 246px 350px 1fr;
+}
+.messagePageDispaly{
+  margin-top: 10px;
+  height: 60rem;
+}
+.sendMes{
+  display: flex;
+  align-items: center;
+  
+}
+.hm{
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+.creatgroup{
+  margin-left: auto;
+  margin-top: 10px;
+}
+.masseagePlaceholder{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  
+}
+.masseagePlaceholder p{
+  color: gray;
+}
+.sendedMessage{
+  border-right: 2px solid #262626;
+}
+
+
+.direct{
+  margin-bottom: 30px;
+  display: flex;
+}
+.direct p  :not(p){
+  color: gray;
+}
+.since{
+  margin-left: auto;
+}
+
+.sendAMessaging{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* .Explorestrsuc{
+  display: grid;
+  grid-template-columns:246px 1fr ;
+} */
+
+
+.explorestruc{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  margin-top: 10px;
+
+}
+.profileInfo{
+  display: flex;
+  gap: 100px;
+  margin-top: 50px;
+}
+.profileInfo img{
+  width: 152px;
+  height: 152px;
+  border-radius: 50%;
+}
+.btn{
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  width: 123px;
+  height: 32px;
+  margin-top: 15px;
+}
+.profileHeader{
+  display: flex;
+  justify-items: center;
+  gap: 15px;
+}
+.profiledatainfo{
+  margin-top: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.switches{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  width: 40%;
+  height: 65px;
+  margin: auto;
+  margin-top: 50px;
+ 
+}
+
+.switches .posts , .switches .reels , .switches .tagged{
+  text-decoration: none;
+  color:white
+  
+}
+
+.switch{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.profilePost{
+  display: flex;
+  gap: 5px;
+
+}
+
+.profileReels{
+  display: flex;
+  gap: 5px;
+}
