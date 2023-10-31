@@ -6,22 +6,26 @@ import Modal from "@mui/joy/Modal";
 import ModalDialog from "@mui/joy/ModalDialog";
 import Stack from "@mui/joy/Stack";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useState } from "react";
 import axios from "axios";
 import { Box, Textarea, Typography } from "@mui/joy";
 
 const token = localStorage.getItem("token");
 function Modalcreate() {
+  const [i, seti] = useState(null);
   const [open, setOpen] = useState(false);
   const [image, setimage] = useState(null);
   const [data, setdata] = useState([{ title: "", description: "" }]);
   const handleimgchange = (event) => {
     const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      seti(reader.result);
+    };
+    reader.readAsDataURL(file);
     setimage(file);
-    // console.log(read);
   };
+
   let formdata = new FormData();
   formdata.append("image", image);
   formdata.append("description", data.description);
@@ -44,14 +48,16 @@ function Modalcreate() {
   return (
     <>
       <Box className="icons" onClick={() => setOpen(true)}>
-          <AddCircleOutlineIcon style={{ fontSize: 30 }} className="Icon" />
+        <AddCircleOutlineIcon style={{ fontSize: 30 }} className="Icon" />
 
-       <Typography sx={{color: 'white'}}>Create</Typography>
-   </Box>
+        <Typography sx={{ color: "white" }}>Create</Typography>
+      </Box>
       <Modal open={open} onClose={() => setOpen(false)}>
-      <ModalDialog sx={{ background: "black", color: "white" }}>
-          <Typography style={{ textAlign: "center" , color : 'white' }}>new post</Typography>
-          
+        <ModalDialog sx={{ background: "black", color: "white" }}>
+          <Typography style={{ textAlign: "center", color: "white" }}>
+            new post
+          </Typography>
+
           <form
             onSubmit={(event) => {
               event.preventDefault();
@@ -59,46 +65,52 @@ function Modalcreate() {
             }}
           >
             <Stack sx={{ paddingX: "200px", paddingY: "50px" }} spacing={2}>
-            <FormControl sx={{ width: "500px" }}>
-                   <FormLabel sx={{ color: "white" }}>Description</FormLabel>
-                   <Textarea
+              <FormControl sx={{ width: "500px" }}>
+                <FormLabel sx={{ color: "white" }}>Description</FormLabel>
+                <Textarea
                   required
                   onChange={(e) => {
                     setdata({ ...data, description: e.target.value });
                   }}
-                  minRows={10} variant="solid" size="lg" color="neutral"
-                  />
-             </FormControl>
-
-
-             
-
-                
-              <Box sx={{  display:'flex' , flexDirection:'column' ,alignItems:'center' }}>
-              <FormControl>
-                <Button sx={{ margin: "50px" ,width: 'max-content'  }}
-                  component="label"
-                 
-                  >
-                  choose pic
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleimgchange}
-                    style={{ display: "none" }}
-                  />
-                </Button>
+                  minRows={10}
+                  variant="solid"
+                  size="lg"
+                  color="neutral"
+                />
               </FormControl>
-              {image != null &&  <img src={image} />}
-              
-              <Button
-                onClick={() => {
-                  handlesubmit();
+
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
                 }}
-                type="submit"
-               >
-                Submit
-              </Button>
+              >
+                <FormControl>
+                  <Button
+                    sx={{ margin: "10px", width: "max-content" }}
+                    component="label"
+                  >
+                    choose pic
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleimgchange}
+                      style={{ display: "none" }}
+                    />
+                  </Button>
+                </FormControl>
+                {image != null && <img src={i} width={200} height={200} />}
+
+                <Button
+                  onClick={() => {
+                    handlesubmit();
+                  }}
+                  type="submit"
+                  style={{ margin: "20px" }}
+                >
+                  Submit
+                </Button>
               </Box>
             </Stack>
           </form>
@@ -109,31 +121,6 @@ function Modalcreate() {
 }
 
 export default Modalcreate;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState } from "react";
 // import Button from "@mui/joy/Button";
@@ -152,12 +139,7 @@ export default Modalcreate;
 // import axios from "axios";
 // import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
-
-
-
 // const token = localStorage.getItem("token");
-
-
 
 // function Modalcreate() {
 
@@ -174,7 +156,6 @@ export default Modalcreate;
 //   let formdata = new FormData();
 //   formdata.append("image", image);
 //   formdata.append("description", data.description);
-
 
 //   function handlesubmit(event) {
 //     axios
@@ -209,7 +190,6 @@ export default Modalcreate;
 //             }}
 //           >
 //             <Stack sx={{ paddingX: "200px", paddingY: "50px" }} spacing={2}>
-             
 
 //               <FormControl sx={{ width: "500px" }}>
 //                 <FormLabel sx={{ color: "white" }}>Description</FormLabel>
@@ -224,7 +204,7 @@ export default Modalcreate;
 //               <Box sx={{  display:'flex' , flexDirection:'column' ,alignItems:'center' }}>
 
 //                 <Button   component="label" sx={{ margin: "50px" ,width: 'max-content'  }}>choose image
-                
+
 //                     <input
 //                       type="file"
 //                       accept="image/*"
@@ -235,9 +215,7 @@ export default Modalcreate;
 
 //                 {image != null && <img src={image} />}
 
-
-
-//                 <Button sx={{width: 'max-content'}} type="submit" 
+//                 <Button sx={{width: 'max-content'}} type="submit"
 //                  onClick={() => {
 //                   handlesubmit();
 //                 }}
@@ -254,7 +232,6 @@ export default Modalcreate;
 // }
 
 // export default Modalcreate;
-
 
 // // import React from "react";
 // // import Button from "@mui/joy/Button";

@@ -11,6 +11,8 @@ import { Container } from "@mui/system";
 import StoryModal from "./StoryModal";
 import { Storycontext } from "../Context/Storycontext";
 import { useContext } from "react";
+import { Avatarcontext } from "../Context/Avatarcontext";
+import axios from "axios";
 const fitWidth = 'fit-content'
 
   
@@ -26,10 +28,44 @@ function Story(props) {
   // const n = name.userName
   // console.log(info)
   // const n = info.email;
-  const name = useContext(Storycontext);
 
+
+  const token = localStorage.getItem("token");
+  const [posts, setpost] = useState([{}]);
+  const [users, setusers] = useState([{}]);
+  const userID = localStorage.getItem("id");
+  const [thisPosts, setThisPosts] = useState([{}]);
+  // console.log("🚀 ~ file: Home.js:26 ~ Home ~ thisPosts:", thisPosts)
+  const [thisUser, setThisUser] = useState([{}]);
+
+
+
+  const avatar = thisUser.avatar;
+  // console.log("🚀 ~ file: Story.js:31 ~ Story ~ avatar:", avatar)
   // console.log(name)
 
+  useEffect(() => {
+    axios
+      .get("http://16.170.173.197/users", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        const users = response.data.users;
+        setusers(users);
+        users.map((user) => {
+          if (user.id == userID) {
+    
+            setThisPosts(user.posts);
+            setThisUser(user);
+          }
+        });
+      })
+      .catch((erorr) => {
+        console.log(erorr);
+      });
+  }, []);
   
   const [clickOnStory, setClickOnStory] = useState(false);
   const [value , setValue] =  useState(false);
@@ -38,7 +74,7 @@ function Story(props) {
   
    function clicked (){
      if(clickOnStory){
-       return <StoryModal value={value} pic={img}    />;
+       return <StoryModal value={value} avatar={avatar}    />;
     }
    }
   
@@ -57,9 +93,9 @@ function Story(props) {
             }}
             className="border"
           >
-            <img src={img}></img>
+            <img src={avatar}></img>
           </div>
-          <p >{name}</p>
+          <p >{thisUser.userName}</p>
         </div>
         <div className="story">
           <div className="border">

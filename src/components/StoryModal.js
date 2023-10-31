@@ -48,7 +48,7 @@ export default function StoryModal(props) {
           >
             
         <Container sx={{width:fitWidth}}>
-          <Storyheader imgsrc = {pic} ></Storyheader>
+          <Storyheader imgsrc = {pic} avatar ={props.avatar} ></Storyheader>
 
           
 

@@ -12,43 +12,111 @@ import { useContext } from "react";
 import { Storycontext } from "../Context/Storycontext";
 import styled from "styled-components";
 import { Style } from "@mui/icons-material";
-
-
+import cr7 from "../assets/download.jpg";
+import { useLocation } from "react-router-dom";
 
 function Home() {
 
+  // function r (){
+
+  //   window.location.reload()
+  // }
+
+  // useEffect(()=>{
+  //   // r()
+  // },[r()])
+
+
 
   const token = localStorage.getItem("token");
-
   const [posts, setpost] = useState([{}]);
-  
+  const [users, setusers] = useState([{}]);
+  const userID = localStorage.getItem("id");
+  const [thisPosts, setThisPosts] = useState([{}]);
+  // console.log("🚀 ~ file: Home.js:26 ~ Home ~ thisPosts:", thisPosts)
+  const [thisUser, setThisUser] = useState([{}]);
+  // console.log("🚀 ~ file: Home.js:26 ~ Home ~ thisPosts:", thisUser.avatar)
+
+  function handleCheckHour(H, M) {
+    const daysDifference = Math.floor(H / 24);
+    if (H > 24) return daysDifference + " day";
+    else if (M <= 0) return " just now";
+    else if (H < 1) return M + " min";
+    else return H + " hour";
+  }
+
   useEffect(() => {
     setpost([{}]);
   }, []);
   useEffect(() => {
     axios
       .get("http://16.170.173.197/posts", {
-
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
-        setpost(response.data.posts);
+        const posts = response.data.posts;
+        setpost(posts.reverse());
       })
       .catch((erorr) => {
         console.log(erorr);
       });
-  }, []); 
-  
-  const displayPosts =
-    posts ? (
-      posts.map((post) => {
-        if (post.user == undefined) {
-          return null;
-        }
-        return (
-          <>
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://16.170.173.197/users", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        const users = response.data.users;
+        setusers(users);
+        users.map((user) => {
+          if (user.id == userID) {
+            // console.log("🚀 ~ file: Home.js:98 ~ posts.map ~ post.user.avatar :", post.user.avatar )
+            // user.avatar =
+            //   "https://tse4.explicit.bing.net/th?id=OIF.hvx mfMDQQBIdCqhsFIqRw&pid=Api&P=0&h=220";
+
+            setThisPosts(user.posts);
+            setThisUser(user);
+          }
+        });
+      })
+      .catch((erorr) => {
+        console.log(erorr);
+      });
+  }, []);
+
+  const displayPosts = posts ? (
+    posts.map((post) => {
+      if (post.user == undefined) {
+        return null;
+      }
+
+      
+      const dateString = post.createdAt;
+      const dateTime = new Date(dateString);
+      const date = new Date();
+      const passedTime = date - dateTime;
+
+      const secondsDifference = Math.floor(passedTime / 1000);
+      const minutesDifference = Math.floor(secondsDifference / 60);
+      const hoursDifference = Math.floor(minutesDifference / 60);
+
+      // if (post.user.id === "c226aff7-8509-47ce-959c-fd75fd04033a") {
+      //   setThisPosts(post)
+      // }
+
+      
+        
+    
+
+
+      return (
+        <>
           <Post
             name={post.user.userName}
             img={post.image}
@@ -56,86 +124,40 @@ function Home() {
             likes={post.likes.length}
             id={post.user.id}
             postid={post.id}
-            key={post.id} 
+            key={post.id}
+            timePassed={handleCheckHour(hoursDifference, minutesDifference)}
+            avatar={post.user.avatar}
           />
-
-     
-
-          </>
-        );
-      })
-    ) : (
-      <div>Loading...</div>
-    );
+        </>
+      );
+    })
+  ) : (
+    <div>Loading...</div>
+  );
 
 
+  // useEffect(() => {
+  //         setTimeout(() => {
+  //           window.location.reload();
+  //         },3000)
+  // },[])
 
-    
-    
-    
-
-      
-        
-        // let text = document.querySelector("#text")
-       
-        // settext.addEventListener('click',()=>{
-
-
-        // })
-        
-      //   pp.addEventListener('click',() =>{
-      //   // Get the current scroll position
-      //   var scrollPosition = window.scrollY;
-      //   localStorage.setItem('scroll',scrollPosition)
-        
-      //   console.log("🚀 ~ file: Home.js:17 ~ pp.addEventListener ~ scrollPosition:", scroll)
-        
-        
-      //   // Refresh the page
-        
-      //   console.log("after reloading ")
-        
-      //   window.location.reload()
-        
-        
-        
-        
-        
-      //   // After the page has reloaded, set the scroll position back to its previous value
-      // })
-      // const scroll  = JSON.parse( localStorage.getItem("scroll"));
-      // window.scrollTo(0,scroll)
-
-      
-      // function changePosition(){
-        //   console.log("asd")
-        //   // window.scrollTo(0,300000)
-        //   var scrollPosition = window.scrollY;
-        //   localStorage.setItem('scroll',scrollPosition)
-        //   window.location.reload()
-        //   localStorage.setItem('scroll',0)
-      //   return 'asd'
-        
-      // }
-      
-      
-      // const scroll  = JSON.parse( localStorage.getItem("scroll"));
-      // window.scrollTo(0,scroll)
   return (
-      // <Storycontext.Provider value={name}>
+    // <Storycontext.Provider value={name}>
     <div className="homepage">
       <Box>
-
-        <Sidebar/>
+        <Sidebar 
         
+        />
       </Box>
-
-
 
       <div className="homedivs">
         <div className="content">
           <Container maxWidth="md">
-            <Story/>
+            <Story 
+            avatar={thisUser.avatar} 
+            />
+
             {displayPosts}
             {/* <Post></Post> */}
           </Container>
@@ -149,17 +171,15 @@ function Home() {
                 <p>See More</p>
               </div>
               <Addfollower />
-               {/* {addfoloower} */}
-              <Addfollower  />
-              <Addfollower  />
-              
+              {/* {addfoloower} */}
+              <Addfollower />
+              <Addfollower />
             </div>
           </Container>
         </div>
       </div>
     </div>
-  // </Storycontext.Provider>
-    
+    // </Storycontext.Provider>
   );
 }
 

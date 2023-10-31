@@ -14,6 +14,12 @@ import { useContext } from "react";
 import { Storycontext } from "../Context/Storycontext";
 import { Button } from "@mui/material";
 import LogoutIcon from '@mui/icons-material/Logout';
+import { Avatarcontext } from "../Context/Avatarcontext";
+import { PropaneSharp } from "@mui/icons-material";
+import Editprofile from "./Editprofile";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 
 let iconStyle = {
   color: "white",
@@ -21,14 +27,50 @@ let iconStyle = {
 }
 
 
-function Sidebar() {
+function Sidebar(props) {
   const name = useContext(Storycontext);
-  console.log("🚀 ~ file: Sidebar.js:26 ~ Sidebar ~ name:", name)
+  const user = useContext(Avatarcontext);
   
+  // console.log("🚀 ~ file: Sidebar.js:2W6 ~ Sidebar ~ name:", name)
   
+
+  const token = localStorage.getItem("token");
+  const [posts, setpost] = useState([{}]);
+  const [users, setusers] = useState([{}]);
+  const userID = localStorage.getItem("id");
+  const [thisPosts, setThisPosts] = useState([{}]);
+  // console.log("🚀 ~ file: Home.js:26 ~ Home ~ thisPosts:", thisPosts)
+  const [thisUser, setThisUser] = useState([{}]);
+  
+  const avatar = thisUser.avatar
+
+
+  useEffect(() => {
+    axios
+      .get("http://16.170.173.197/users", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        const users = response.data.users;
+        setusers(users);
+        users.map((user) => {
+          if (user.id == userID) {
+    
+            setThisPosts(user.posts);
+            setThisUser(user);
+          }
+        });
+      })
+      .catch((erorr) => {
+        console.log(erorr);
+      });
+  }, []);
   const navigate = useNavigate();
 
 
+<Editprofile></Editprofile>
 
   // const { setOpen } = useContext(usecontext);
   return (
@@ -75,12 +117,12 @@ function Sidebar() {
         </div>
         <Modalcreate className="Icon"/>
         <div className="icons">
-          <img src={profilepic}  style={{marginRight:"7px",width:'35px'}}  className="profile-pic"></img>
+          <img src={avatar}  style={{marginRight:"7px",width:'35px'}}  className="profile-pic"></img>
           <Link
             style={iconStyle}
             to={"/profile"}
           >
-            <span style={{fontSize:'15px'}} >{name}</span>
+            <span style={{fontSize:'15px'}} >{thisUser.userName}</span>
           </Link>
         </div>
         <div>

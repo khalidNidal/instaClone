@@ -39,7 +39,11 @@ function Signup() {
       .then((response) => {
         const token = response.data.token;
         localStorage.setItem("token", token);
-        navigate("/  ");
+      
+        
+        navigate("/signin");
+        <Link to={"/signin"}/>
+
       })
       .catch((error) => {
         console.log(error);
@@ -69,8 +73,8 @@ function Signup() {
 
         <Grid item xs={12} md={6}
          onSubmit={(event) => {
+           handlesignup();
            event.preventDefault();
-          handlesignup();
         }}
         >
           <Container maxWidth="xs">
@@ -139,7 +143,7 @@ function Signup() {
                       setdata({ ...data, password: e.target.value });
                     }}
                   />
-
+                  {/* <Link to={"/signin"}> */}
                   <Button
                     type="submit"
                     fullWidth
@@ -147,6 +151,7 @@ function Signup() {
                   >
                     Sign Up
                   </Button>
+                  {/* </Link> */}
 
                   <p style={{ textAlign: "center" }}>
                     By signing up, you agree to our Terms, Data Policy and

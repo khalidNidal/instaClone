@@ -1,0 +1,21 @@
+Edit post from the profile posts 
+likes 
+change the password 
+story swiper
+scilton
+onclick on the account name show the account profile 
+search
+validation on signin
+delete user (on the sttings comp with  change pass comp)
+saved posts
+
+
+---------------------------------------------------------------
+
+accounts:
+email : khalid , oun , ss , asd , newuser@gmail.com ,eman , n , qwe
+pass  : 123    , 123  , ss , ? , 123       , eman or 123  , n , qwe
+
+
+links : 
+api doc link : https://student-aaup.gitbook.io/instagram-clone/

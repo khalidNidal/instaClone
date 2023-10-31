@@ -22,6 +22,9 @@ export default function Modaledit(props) {
 
   const [image, setimage] = useState(null);
   const [description, setdescription] = useState("");
+  // console.log("🚀 ~ file: Modaledit.js:25 ~ Modaledit ~ description:", description)
+const id = props.id
+// console.log("🚀 ~ file: Modaledit.js:27 ~ Modaledit ~ id:", id)
 
   function handelupdate() {
     const id = props.id;

@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import img1 from "../assets/ExplorePics/cristiano-ronaldo-real-madrid-champions-league.jpg";
 import img2 from "../assets/ExplorePics/548cf16b77ae0a5a9cd32526127a1c23.jpg";
 import img3 from "../assets/ExplorePics/a6ba46e4c2ba063d02356bc0d913cb34.jpg";
+import img4 from "../assets/ExplorePics/a6ba46e4c2ba063d02356bc0d913cb34.jpg";
 
 
 
@@ -18,7 +19,7 @@ const pics = [img1,img2,img3];
 const content = pics.map((img) => {
 
     return (
-    <div style={{ marginRight: 5 }}>
+    <div style={{ marginRight: 5  }}>
 
         <img style={{ width: 300, height: 300 }} src={img} />
 

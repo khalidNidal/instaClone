@@ -26,8 +26,9 @@ function Signin() {
   });
 
 
+  const userName = localStorage.setItem("userName",JSON.stringify(data));
     
-    const userName = localStorage.setItem("userName",JSON.stringify(data));
+
     // const info  = JSON.parse( localStorage.getItem("userName"));
   // // const n = name.userName
   // console.log(info)
@@ -42,11 +43,23 @@ function Signin() {
   function handlesignup() {
     axios
       .post("http://16.170.173.197/users/login", data)
-      .then((response) => {
-        const token = response.data.token;
+      .then((response) => {        
         const id = response.data.user.id;
+        const user = response.data.user
+        console.log("🚀 ~ file: Signin.js:48 ~ .then ~ id:", id)
         localStorage.setItem("id", id);
+        
+        const token = response.data.token;
         localStorage.setItem("token", token);
+        // if(id=="c226aff7-8509-47ce-959c-fd75fd04033a")
+        // {
+        //   console.log("==")
+        //   console.log("🚀 ~ file: Signin.js:58 ~ .then ~ user.avatar:", user.avatar)
+        //   user.avatar = "https://tse4.explicit.bing.net/th?id=OIF.hvxLmfMDQQBIdCqhsFIqRw&pid=Api&P=0&h=220"
+        //   console.log("🚀 ~ file: Signin.js:58 ~ .then ~ user.avatar:", user.avatar)
+
+        // }
+
         navigate("/");
       })
       .catch((error) => {

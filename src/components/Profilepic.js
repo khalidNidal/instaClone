@@ -7,7 +7,15 @@ import Postoption from "./Postoption";
 
 
 
+
 function Profilepic(props) {
+
+
+
+
+
+
+  
   function cheackId() {
     if(props.id == localStorage.getItem("id")){
       return <Postoption id={props.postid} />
@@ -19,18 +27,16 @@ function Profilepic(props) {
 
       <div className="postName">
         <div className="postBorder">
-          <img src={img}></img>
+          <img src={props.avatar}></img>
         </div>
         <div className="postHeaderInfo">
           <div>
             <p>
-              
               {props.name}
             </p>
           </div>
-          <div className="timeOut">
-            <p>9999h</p>
-          </div>
+          <div className="timeOut"/>
+            <p style={{color:'gray' , marginLeft:'7px'}}>{props.timePassed}</p>
          
         </div>
       </div>

@@ -14,17 +14,18 @@ import { useEffect } from "react";
 import Alert from "@mui/material/Alert";
 import { useState } from "react";
 import Modaledit from "./Modaledit";
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Postoption(props) {
+  const navigate = useNavigate();
+
   const [open, setopen] = useState(false);
-  
-  
+
   function passopen() {
     setopen(!open);
   }
-  
+
   function handeledit() {
     setopen(true);
     // console.log(open);
@@ -32,9 +33,9 @@ export default function Postoption(props) {
   const token = localStorage.getItem("token");
   function handeldelete(id) {
     axios
-    .request({
-      method: "delete",
-      url: `http://16.170.173.197/posts/${id}`,
+      .request({
+        method: "delete",
+        url: `http://16.170.173.197/posts/${id}`,
         data: {
           id: id,
         },
@@ -49,14 +50,12 @@ export default function Postoption(props) {
         console.error("Error deleting post:", error);
       });
   }
+  
   return (
     <div>
-      <Dropdown
-      >
-        <MenuButton
-           size="sm"
-        >
-          <MoreHorizIcon/>
+      <Dropdown>
+        <MenuButton size="sm">
+          <MoreHorizIcon />
         </MenuButton>
 
         <Menu placement="bottom-end">
@@ -70,21 +69,30 @@ export default function Postoption(props) {
 
           <ListDivider />
 
+
           <MenuItem
             onClick={() => {
               handeldelete(props.id);
+
+              // navigate(-1)      to get the previous page 
+
+              // setTimeout(() => {
+
+              //   window.location.reload();
+              // },1000)
+
+
             }}
             color="danger"
           >
-
-              <ListItemDecorator sx={{ color: "inherit" }}>
-                <DeleteForever />
-              </ListItemDecorator>{" "}
+            <ListItemDecorator sx={{ color: "inherit" }}>
+              <DeleteForever />
+            </ListItemDecorator>{" "}
             Delete
           </MenuItem>
         </Menu>
       </Dropdown>
-<Modaledit id={props.id} open={open} setopen={passopen} />
+      <Modaledit id={props.id} open={open} setopen={passopen} />
     </div>
   );
 }

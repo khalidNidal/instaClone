@@ -1,10 +1,11 @@
 import React from "react";
 import { useContext } from "react";
-import img from "../assets/StoriesAvatars/driver.png";
+import { Avatarcontext } from "../Context/Avatarcontext";
 import { Storycontext } from "../Context/Storycontext";
 
 function Storyheader(props) {
   const name = useContext(Storycontext);
+  const user = useContext(Avatarcontext);
 
   return (
     <>
@@ -12,11 +13,11 @@ function Storyheader(props) {
 
       <div className="postName">
         <div className="storyBorder">
-          <img src={img}></img>
+          <img src={props.avatar}></img>
         </div>
         <div className="postHeaderInfo">
           <div>
-            <p> {name}</p>
+            <p> {user.userName}</p>
           </div>
           <div className="timeOut">
             <p>9999h</p>

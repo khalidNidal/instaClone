@@ -17,11 +17,11 @@ function Addpeople(props) {
 
       <div>
         <div>
-          <p>jana</p>
+          <p>user</p>
         </div>
         <div>
           <p >
-            jannna 
+            user 
           </p>
         </div>
       </div>
