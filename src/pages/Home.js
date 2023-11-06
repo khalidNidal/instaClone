@@ -16,6 +16,7 @@ import cr7 from "../assets/download.jpg";
 import { useLocation } from "react-router-dom";
 
 function Home() {
+  // props.info()
 
   // function r (){
 
@@ -25,6 +26,7 @@ function Home() {
   // useEffect(()=>{
   //   // r()
   // },[r()])
+
 
 
 

@@ -36,7 +36,7 @@ const token = localStorage.getItem("token");
 
     setOpen(false);
     handleDelete();
-    localStorage.removeItem("token");
+    localStorage.clear();
 
   };
 

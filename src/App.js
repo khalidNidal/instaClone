@@ -1,5 +1,5 @@
 import "./Style.css";
-import { BrowserRouter, Routes, Route, Await } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Await, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Messages from "./pages/Messages";
 import Explore from "./pages/Explore";
@@ -16,8 +16,13 @@ import { useState } from "react";
 import { Avatar } from "@mui/material";
 import { Avatarcontext } from "./Context/Avatarcontext";
 import Thispost from "./pages/Thispost";
-import Backtosigncopy from "./Routes/Backtosigncopy";
+import { jwtDecode } from "jwt-decode";
+// function saveCurrentUser(){
 
+//   let token  = localStorage.getItem("token")
+//   let decoded = jwtDecode (token)
+//   console.log(decoded)
+// }
 
 function App() {
 
@@ -73,7 +78,7 @@ function App() {
         <Route path="/"
           element={
             <Protecthome>
-              <Home />
+              <Home  />
             </Protecthome>
           }
         />
@@ -91,9 +96,9 @@ function App() {
         <Route
           path="/signin"
           element={
-            // <Backtosigncopy>
+            <Backtosign>
               <Signin />
-             /* </Backtosigncopy>  */
+            </Backtosign>   
           }
         />
         <Route
@@ -101,7 +106,7 @@ function App() {
           element={
             <Backtosign>
               <Signup />
-             </Backtosign>
+            </Backtosign> 
           }
         />
 

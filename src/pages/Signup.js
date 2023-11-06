@@ -12,7 +12,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { Storycontext } from "../Context/Storycontext";
 
-function Signup() {
+function Signup(props) {
 
 
 
@@ -22,28 +22,19 @@ function Signup() {
     password: "",
   });
 
-
-    
-      const userName = localStorage.setItem("userName",JSON.stringify(data));
-    
-
-  //   // const name = JSON.parse( localStorage.getItem("userName"));
-  //   // const n = name.userName
-  //   // console.log(n)
-  
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   function handlesignup() {
 
     axios
       .post("http://16.170.173.197/users/signup", data)
       .then((response) => {
         const token = response.data.token;
-        localStorage.setItem("token", token);
-      
-        
-        navigate("/signin");
-        <Link to={"/signin"}/>
-
+        // localStorage.setItem("token", token);
+    
+        if(token)
+        {
+          navigate("/signin")
+        }
       })
       .catch((error) => {
         console.log(error);

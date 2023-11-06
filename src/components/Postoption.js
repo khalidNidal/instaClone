@@ -18,6 +18,8 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Postoption(props) {
+  const l = useLocation().pathname;
+  console.log("🚀 ~ file: Home.js:31 ~ Home ~ l:", l)
   const navigate = useNavigate();
 
   const [open, setopen] = useState(false);
@@ -73,13 +75,14 @@ export default function Postoption(props) {
           <MenuItem
             onClick={() => {
               handeldelete(props.id);
+              if(l!='/'){
+              navigate(-1)    //  to get the previous page 
 
-              // navigate(-1)      to get the previous page 
+              setTimeout(() => {
 
-              // setTimeout(() => {
-
-              //   window.location.reload();
-              // },1000)
+                window.location.reload();
+              },1000)
+            }
 
 
             }}
